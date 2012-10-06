@@ -1,0 +1,8 @@
+# Hello World
+from bottle import route, run
+
+@rout('/hello')
+def hello():
+	return "Hello World!"
+
+run(host='localhost',port8080, debug=True)
