@@ -1,0 +1,61 @@
+<!-- _lcid="1033" _version="14.0.4762" _dal="1" -->
+<!-- _LocalBinding -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="<%$Resources:wss,multipages_direction_dir_value%>;" xmlns:o="urn:schemas-microsoft-com:office:office" runat="server">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
+    <meta name="SharePointError" content=""/>
+    <meta name="Robots" content="NOINDEX" />
+    <base href="http://www.phl.org/_layouts/1033/errorv4.htm">
+    <title id="onetidTitle">Error</title>
+    <link rel="stylesheet" type="text/css" href="/_layouts/1033/styles/Themable/corev4.css">
+    <script type="text/javascript" src="init.js"></script>
+    <script type="text/javascript" src="core.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+
+</script> 
+<div id="container" style="text-align: center">
+    <div id="s4-simple-header" class="s4-pr">
+        <div class="s4-lpi">
+            <a href="javascript:TopHelpButtonClick('NavBarHelpHome')" id="TopHelpLink" accesskey="6" title="Help">
+                <img src="/_layouts/images/helpicon.gif" align="absmiddle" border="0" alt="Help"></img>
+            </a>
+        </div>
+    </div>
+    <div id="s4-simple-card" class="s4-simple-card">
+        <div id="s4-simple-card-top" class="s4-simple-top">
+            <a href="/" id="SimpleGoBackToHomeCloseX" onmouseover="SwapImage('SimpleGoBackToHomeCloseX-image', '/_layouts/images/closeXon.png');" onmouseout="SwapImage('SimpleGoBackToHomeCloseX-image', '/_layouts/images/closeX.png');">
+                <img src="/_layouts/images/closeX.png" id="SimpleGoBackToHomeCloseX-image" alt="Go back to site"></img>
+            </a>
+        </div>
+        <div id="s4-simple-card-content" class="s4-simple-card-content">
+            <div class="s4-simple-iconcont">
+                <img src="/_layouts/images/errorIcon.png" alt="Error"></img>
+            </div>
+            <div id="s4-simple-content" class="s4-simple-content" style="text-align:left;height:100%">
+                <h1>Error</h1>
+                <div id="s4-simple-error-content">
+                    <span id="LabelMessage"></span>
+                    <p class="ms-descriptiontext">
+                        The following file(s) have been blocked by the administrator: /cgi-bin/fidsarrival.pl
+                    </p>
+                    <p>
+                        <span class="ms-descriptiontext">
+                            <span id="WSSEndUser_troubleshooting">
+                                <a title="Troubleshoot issues with Microsoft SharePoint Foundation. - Opens in new window" href="javascript:HelpWindowKey('WSSEndUser_troubleshooting')">Troubleshoot issues with Microsoft SharePoint Foundation.</a>
+                            </span>
+                        </span>
+                    </p>
+                </div>
+                <div id="s4-simple-gobackcont">
+                    <img src="/_layouts/images/backArrow.png" alt=""></img>
+                    <a href="/" id="SimpleGoBackToHome">Go back to site</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

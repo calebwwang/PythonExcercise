@@ -1,0 +1,17 @@
+import urllib
+import os
+
+# get data
+f = urllib.urlopen("http://www.phl.org/cgi-bin/fidsarrival.pl")
+s = f.read()
+f.close()
+
+# write data
+ff = open("output.txt", "w")
+ff.write(s)
+ff.close()
+
+# run shell command
+command="cat output.txt | sed 's/^<.*//;s/.*DATE.*//;s/^Airline.*//;/^$/d' > output.txt"
+os.system(command)
+
