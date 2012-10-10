@@ -32,20 +32,24 @@ def get_player_profiles(player_list):
 		results=urllib2.urlopen(search_url)
 		for l in results.readlines():
 			try:
-				if l.cout('<a href') > 0 and l.count('profile?id'):
-				# Search the returned TML for the hyper-link data for the specific player
+				# Find the link to the players page
+				if l.count('<a href') > 0 and l.count('/profile"'):
+				# Search the returned HTML for the hyper-link data for the specific player
 				# This is mostly string clean up stuff to make the URL string read for the next step
 					split1 = l.split('=')
-					first_piece = split1[l].lstrip('"')
-					second_piece=split1[2].plit('"')[0]
-					player_profile_urls[n]="http://www.nfl.com"+first_piece+"="+second_piece
+					first_piece = split1[0].lstrip('"')
+					second_piece=split1[1].split('"')[1]
+					player_profile_urls[n]="http://www.nfl.com/"+second_piece
+					print "\n \n This is the url:" 
+					print player_profile_urls[n]
 			except UnicodeDecodeError:
 				print "Ignoring UnicodeDecodeError"
-	results.close()
-
-
+		results.close()
+	return player_profile_urls
 
 player_file_path = 'playerData.csv'
 players = get_players(player_file_path)
-print players
+player_urls = get_player_profiles(players)
+
+
 
