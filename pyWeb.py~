@@ -2,7 +2,7 @@ from bottle import route, run, get, post, request
 
 f = open('example.htm')
 
-@route('/test')
+@route('/prompt')
 def hello():
     return f.read()
 

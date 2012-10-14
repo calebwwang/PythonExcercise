@@ -2,17 +2,36 @@ import os
 import sys
 import csv
 import urllib2
+from bottle import route, run, get, post, request
 
+# Load an hmtl file template
+f = open('example.htm')
 
+# The prompt page where it asks for a players name
+@route('/prompt')
+def hello():
+    return f.read()
+
+# The page where it displays the data
+@post('/data') # or @route('/login', method='POST')
+def login_submit():
+    names = request.forms.get('name').split(',')
+    print names
+    player_data = []
+    for i in range(len(names)):
+	    player_url = get_player_urls(names[i])
+	    player_data.append(get_player_data(player_url))
+    print player_data
+    print player_data[1][1]
+    return "<p>Your login was correct</p>"
 
 def get_player_urls(player_list):
 	# Returns a dict of player profile URL's to be used in the next step
 	# The URLs are stored in a hash table with the keys as player names
+	player_list = [player_list]
 	player_profile_urls=dict.fromkeys(player_list)
 	for n in player_list:
-		print n
 		names = n.split(' ')
-		print names
 		#This is the url to search on nfl.com. We add the strings from their name
 		search_url="http://www.nfl.com/players/search?category=name&filter="+names[0]+"+"+names[1]+"&playerType=current&team=3410"
 		results=urllib2.urlopen(search_url)
@@ -60,8 +79,8 @@ def get_player_data(player_urls):
 				born = getFrom(line)
 				#print born
 		data = [height, weight, age, born]
-		print data
 	results.close()
+	return data
 	
 def getData(line):
 	# This function gets height weight and age data 
@@ -71,8 +90,14 @@ def getData(line):
 def getFrom(line):
 	# This function gets where the player is from
 	fromLine = line.split(' ', 1)[1]
-	fromLine = fromLine.strip()
 	return fromLine
 
-names = 'Andrew Luck'
-player_urls = get_player_urls(names)
+def generate_output(names, data):
+	for i in range(len(names)):
+		i = 20
+
+
+
+# Setup the local server
+run(host='localhost', port=8080, debug=True)
+

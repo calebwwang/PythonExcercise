@@ -3,30 +3,16 @@ import sys
 import csv
 import urllib2
 
-def get_players(path):
-	reader=csv.reader(open(path,'U'),delimiter=',')
-	'''
-	players=[]
-	row_num = 0
-	for row in reader:
-	if row_num<1:
-	# Ignmore the column headers
-		row_num+=1
-	else:
-	# Player names are in the first column
-	# so we add data from index 0
-		players.append(row[0])
-	'''
 
-	reader.next()
-	return [row[0] for row in reader]
 
 def get_player_urls(player_list):
 	# Returns a dict of player profile URL's to be used in the next step
 	# The URLs are stored in a hash table with the keys as player names
 	player_profile_urls=dict.fromkeys(player_list)
-	for n in player_list:
+	for n in range(len(player_list)):
+		print n
 		names = n.split(' ')
+		print names
 		#This is the url to search on nfl.com. We add the strings from their name
 		search_url="http://www.nfl.com/players/search?category=name&filter="+names[0]+"+"+names[1]+"&playerType=current&team=3410"
 		results=urllib2.urlopen(search_url)
@@ -74,6 +60,7 @@ def get_player_data(player_urls):
 				born = getFrom(line)
 				#print born
 		data = [height, weight, age, born]
+		print data
 	results.close()
 	
 def getData(line):
@@ -84,13 +71,8 @@ def getData(line):
 def getFrom(line):
 	# This function gets where the player is from
 	fromLine = line.split(' ', 1)[1]
+	fromLine = fromLine.strip()
 	return fromLine
-player_file_path = 'playerData.csv'
-players = get_players(player_file_path)
-player_urls = get_player_urls(players)
-get_player_data(player_urls)
-#items = player_urls.items()
-#print items
-#search_url = items[0]
-#name, url = search_url
-#print url 
+
+names = 'Andrew Luck'
+player_urls = get_player_urls(names)
