@@ -5,6 +5,7 @@ displays it for the user.
 To use this code make sure the following Python modules are installed:
 - HTML.py which can be installed from http://www.decalage.info/python/html
 - urllib2
+
 You can check to see what python modules are installed by typing help('modules') in a python shell
 
 To run the program run the program NFLstats.py by typing "python NFLstats.py" (no quotes) in the command line
