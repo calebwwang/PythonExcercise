@@ -1,6 +1,5 @@
 import os
 import sys
-import csv
 import urllib2
 from bottle import route, run, get, post, request
 import HTML
@@ -20,9 +19,15 @@ def hello():
 def login_submit():
     # Get the names from the prompt and split them on commas
     names = request.forms.get('name').split(',')
+    for i in range(len(names)):
+	    # Remove any extra spaces
+	    names[i] = names[i].strip()
+	    print names[i]
     player_data = []
     # Loop through the list of names and fetch the corresponding url and player data
     for i in range(len(names)):
+	    temp = names[i].split(' ')[0].capitalize() + ' ' + names[i].split(' ')[1].capitalize()
+	    names[i] = temp
 	    player_url = get_player_urls(names[i])
 	    player_data.append(get_player_data(player_url))
 	    player_data[i].insert(0,names[i])

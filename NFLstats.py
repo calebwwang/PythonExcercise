@@ -1,6 +1,5 @@
 import os
 import sys
-import csv
 import urllib2
 from bottle import route, run, get, post, request
 import HTML
@@ -20,9 +19,14 @@ def hello():
 def login_submit():
     # Get the names from the prompt and split them on commas
     names = request.forms.get('name').split(',')
+    for i in range(len(names)):
+	    # Remove any extra spaces
+	    names[i] = names[i].strip()
     player_data = []
     # Loop through the list of names and fetch the corresponding url and player data
     for i in range(len(names)):
+	    temp = names[i].split(' ')[0].capitalize() + ' ' + names[i].split(' ')[1].capitalize()
+	    names[i] = temp
 	    player_url = get_player_urls(names[i])
 	    player_data.append(get_player_data(player_url))
 	    player_data[i].insert(0,names[i])
@@ -63,32 +67,30 @@ def get_player_urls(player_list):
 
 # This function takes a dictionary of player names and urls and returns height, weight, age, and birthplace for the player
 def get_player_data(player_urls):
+	# Find all the items in the dictionary
 	items = player_urls.items()
+	# Loop through and extract the url in each item
 	for i in range(len(items)):
 		search_url = items[i]
 		name, url = search_url
 		results=urllib2.urlopen(url)
 		l = results.readlines()
+		# Look through each line for the data I want
 		for index in range(len(l)):
 			line = l[index]
 			# Check for height data
 			if line.count('Height</strong>') > 0:
 				height = getData(line)
-				
-				#print height
 			# Check for weight data
 			if line.count('Weight</strong>') > 0:
 				weight = getData(line)
-				#print weight
 			# Check for age data
 			if line.count('Age</strong>') > 0:
 				age = getData(line)
-				#print age
-
 			# Check for birthplace
 			if line.count('Born</strong>') > 0:
 				born = getFrom(line)
-				#print born
+		# Package the data
 		data = [height, weight, age, born]
 	results.close()
 	return data
@@ -103,14 +105,6 @@ def getFrom(line):
 	fromLine = line.split(' ', 1)[1]
 	fromLine = fromLine.strip()
 	return fromLine
-
-def generate_output(names, data):
-	numData = 5
-	for i in range(len(names)):
-		data.insert(0,names[i])
-		print data
-
-
 
 # Setup the local server
 run(host='localhost', port=8080, debug=True)
