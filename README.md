@@ -8,9 +8,10 @@ To use this code make sure the following Python modules are installed:
 
 You can check to see what python modules are installed by typing help('modules') in a python shell
 
-To run the program run the program NFLstats.py by typing "python NFLstats.py" (no quotes) in the command line
-The following text should be displayed:
+Run the program by typing "python NFLstats.py" (no quotes) in the command line
+while in the directory with all of the files.
 
+The following text should be displayed:
 Bottle v0.11.rc1 server starting up (using WSGIRefServer())...
 Listening on http://localhost:8080/
 Hit Ctrl-C to quit.
